@@ -25,4 +25,3 @@ class MyDiamond extends CGFobject {
 		this.initGLBuffers();
 	}
 }
-

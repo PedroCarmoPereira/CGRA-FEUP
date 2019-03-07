@@ -12,7 +12,7 @@ class MyScene extends CGFscene {
         this.initLights();
 
         //Background color
-        this.gl.clearColor(1, 1, 1, 1.0);
+        this.gl.clearColor(0.8, 0.0, 0.5, 1.0);
 
         this.gl.clearDepth(100.0);
         this.gl.enable(this.gl.DEPTH_TEST);
@@ -23,15 +23,17 @@ class MyScene extends CGFscene {
         this.axis = new CGFaxis(this);
         this.diamond = new MyDiamond(this);
         this.triangle = new MyTriangle(this);
-        this.parallelo = new MyParallelogram(this);
-        this.smallTriangle = new MySmallTriangle(this);
-        this.bigTriangle = new MyBigTriangle(this);
+        this.parallelogram = new MyParallelogram(this);
+        this.tangram = new MyTangram(this);
+        this.cube = new MyUnitCube(this);
 
         //Objects connected to MyInterface
         this.displayAxis = true;
-        this.displaySquare = false;
-        this.displayTriangle = false;
-        this.displayParallelo =  false;
+        this.displayDiamond = true;
+        this.displayTriangle = true;
+        this.displayParallelogram = true;
+        this.displayTangram = false;
+        this.displayCube = true;
         this.scaleFactor = 1;
     }
     initLights() {
@@ -59,7 +61,7 @@ class MyScene extends CGFscene {
         this.loadIdentity();
         // Apply transformations corresponding to the camera position relative to the origin
         this.applyViewMatrix();
-        
+
         // Draw axis
         if (this.displayAxis)
             this.axis.display();
@@ -74,12 +76,71 @@ class MyScene extends CGFscene {
 
 
         // ---- BEGIN Primitive drawing section
+        /*this.pushMatrix();
+        var dt = [ 1.0, 0.0, 0.0, 0.0,
+                    0.0, 1.0, 0.0, 0.0,
+                    0.0, 0.0, 1.0, 0.0,
+                    2.25, 2.12, 0.0, 1.0];
+        this.multMatrix(dt);
+        var dr = [ Math.cos(Math.PI/6), Math.sin(Math.PI/6), 0.0, 0.0,
+                    -Math.sin(Math.PI/6), Math.cos(Math.PI/6), 0.0, 0.0,
+                    0.0, 0.0, 0.0, 0.0,
+                    0.0, 0.0, 0.0, 1.0];
+        this.multMatrix(dr);
+        if (this.displayDiamond)
+        this.diamond.display();
+        this.popMatrix();
 
-        if(this.displaySquare) this.diamond.display();
-        if(this.displayTriangle) this.triangle.display();
-        if(this.displayParallelo) this.parallelo.display();
-        this.smallTriangle.display();
-        this.bigTriangle.display();
+        this.pushMatrix();
+        this.rotate(Math.PI/4, 0, 0, 1);
+        this.translate(0.5, 0.5, 0);
+        if (this.displayTriangle)
+        this.triangle.display();
+        this.popMatrix();
+
+        this.pushMatrix();
+        this.translate(2.1, -0.7, 0);
+        this.scale(1.5, 1.5, 0);
+        this.rotate(-Math.PI/2-Math.PI/4, 0, 0, 1);
+        if (this.displayTriangle)
+        this.triangle.display();
+        this.popMatrix();
+
+        this.pushMatrix();
+        this.translate(-1.5, 0.8, 0);
+        this.scale(1.5, 1.5, 0);
+        if (this.displayTriangle)
+        this.triangle.display();
+        this.popMatrix();
+
+        this.pushMatrix();
+        this.translate(5.5, 0.0, 0);
+        this.scale(-1, 1, 0);
+        if (this.displayParallelogram)
+        this.parallelogram.display();
+        this.popMatrix();
+
+        this.pushMatrix();
+        this.translate(-3, 2.3, 0);
+        this.rotate(Math.PI, 0, 0, 1);
+        this.scale(0.5, 0.5, 0);
+        if (this.displayTriangle)
+        this.triangle.display();
+        this.popMatrix();
+
+        this.pushMatrix();
+        this.translate(-3.7, 0.4, 0);
+        this.rotate(Math.PI/4, 0, 0, 1);
+        this.scale(-0.5, -0.5, 0);
+        if (this.displayTriangle)
+        this.triangle.display();
+        this.popMatrix();*/
+
+        if (this.displayTangram)
+        this.tangram.display();
+
+        if (this.displayCube)
+        this.cube.display();
 
         // ---- END Primitive drawing section
     }
