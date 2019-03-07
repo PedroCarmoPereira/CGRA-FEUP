@@ -25,6 +25,7 @@ class MyScene extends CGFscene {
         this.triangle = new MyTriangle(this);
         this.parallelogram = new MyParallelogram(this);
         this.tangram = new MyTangram(this);
+        
         this.cube = new MyUnitCube(this);
 
         //Objects connected to MyInterface
@@ -73,6 +74,8 @@ class MyScene extends CGFscene {
                     0.0, 0.0, this.scaleFactor, 0.0,
                     0.0, 0.0, 0.0, 1.0];
         this.multMatrix(sca);
+
+        this.rotate(3*Math.PI/2, 1, 0, 0);
 
         if (this.displayTangram)
         this.tangram.display();
