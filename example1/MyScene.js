@@ -32,8 +32,8 @@ class MyScene extends CGFscene {
         this.displayDiamond = true;
         this.displayTriangle = true;
         this.displayParallelogram = true;
-        this.displayTangram = false;
-        this.displayCube = true;
+        this.displayTangram = true;
+        this.displayCube = false;
         this.scaleFactor = 1;
     }
     initLights() {
@@ -73,68 +73,6 @@ class MyScene extends CGFscene {
                     0.0, 0.0, this.scaleFactor, 0.0,
                     0.0, 0.0, 0.0, 1.0];
         this.multMatrix(sca);
-
-
-        // ---- BEGIN Primitive drawing section
-        /*this.pushMatrix();
-        var dt = [ 1.0, 0.0, 0.0, 0.0,
-                    0.0, 1.0, 0.0, 0.0,
-                    0.0, 0.0, 1.0, 0.0,
-                    2.25, 2.12, 0.0, 1.0];
-        this.multMatrix(dt);
-        var dr = [ Math.cos(Math.PI/6), Math.sin(Math.PI/6), 0.0, 0.0,
-                    -Math.sin(Math.PI/6), Math.cos(Math.PI/6), 0.0, 0.0,
-                    0.0, 0.0, 0.0, 0.0,
-                    0.0, 0.0, 0.0, 1.0];
-        this.multMatrix(dr);
-        if (this.displayDiamond)
-        this.diamond.display();
-        this.popMatrix();
-
-        this.pushMatrix();
-        this.rotate(Math.PI/4, 0, 0, 1);
-        this.translate(0.5, 0.5, 0);
-        if (this.displayTriangle)
-        this.triangle.display();
-        this.popMatrix();
-
-        this.pushMatrix();
-        this.translate(2.1, -0.7, 0);
-        this.scale(1.5, 1.5, 0);
-        this.rotate(-Math.PI/2-Math.PI/4, 0, 0, 1);
-        if (this.displayTriangle)
-        this.triangle.display();
-        this.popMatrix();
-
-        this.pushMatrix();
-        this.translate(-1.5, 0.8, 0);
-        this.scale(1.5, 1.5, 0);
-        if (this.displayTriangle)
-        this.triangle.display();
-        this.popMatrix();
-
-        this.pushMatrix();
-        this.translate(5.5, 0.0, 0);
-        this.scale(-1, 1, 0);
-        if (this.displayParallelogram)
-        this.parallelogram.display();
-        this.popMatrix();
-
-        this.pushMatrix();
-        this.translate(-3, 2.3, 0);
-        this.rotate(Math.PI, 0, 0, 1);
-        this.scale(0.5, 0.5, 0);
-        if (this.displayTriangle)
-        this.triangle.display();
-        this.popMatrix();
-
-        this.pushMatrix();
-        this.translate(-3.7, 0.4, 0);
-        this.rotate(Math.PI/4, 0, 0, 1);
-        this.scale(-0.5, -0.5, 0);
-        if (this.displayTriangle)
-        this.triangle.display();
-        this.popMatrix();*/
 
         if (this.displayTangram)
         this.tangram.display();
