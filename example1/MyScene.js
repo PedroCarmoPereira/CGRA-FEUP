@@ -27,6 +27,7 @@ class MyScene extends CGFscene {
         this.tangram = new MyTangram(this);
         
         this.cube = new MyUnitCube(this);
+        this.framedT = new MyFramedTangram(this);
 
         //Objects connected to MyInterface
         this.displayAxis = true;
@@ -75,13 +76,17 @@ class MyScene extends CGFscene {
                     0.0, 0.0, 0.0, 1.0];
         this.multMatrix(sca);
 
-        this.rotate(3*Math.PI/2, 1, 0, 0);
-
+        //this.rotate(3*Math.PI/2, 1, 0, 0);
+    /*
         if (this.displayTangram)
-        this.tangram.display();
+        this.tangram.display();*/
+        
 
+        /*
         if (this.displayCube)
-        this.cube.display();
+        this.cube.display();*/
+
+        this.framedT.display();
 
         // ---- END Primitive drawing section
     }
