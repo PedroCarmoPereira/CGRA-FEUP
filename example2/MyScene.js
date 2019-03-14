@@ -38,10 +38,12 @@ class MyScene extends CGFscene {
         this.displayNormals = false;
         this.objectComplexity = 0.5;
         this.scaleFactor = 2.0;
+        this.ambientIntensity = 0.3;
 
     }
+
     initLights() {
-        this.setGlobalAmbientLight(0.3, 0.3, 0.3, 1.0);
+        this.setGlobalAmbientLight(0.3, 0.3,  0.3, 1);
 
         this.lights[0].setPosition(2.0, 2.0, -1.0, 1.0);
         this.lights[0].setDiffuse(1.0, 1.0, 1.0, 1.0);
@@ -149,7 +151,8 @@ class MyScene extends CGFscene {
         this.loadIdentity();
         // Apply transformations corresponding to the camera position relative to the origin
         this.applyViewMatrix();
-        
+    
+        this.setGlobalAmbientLight(this.ambientIntensity, this.ambientIntensity, this.ambientIntensity, 1);
         this.lights[0].update();
         this.lights[1].update();
 
