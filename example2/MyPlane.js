@@ -17,7 +17,7 @@ class MyPlane extends CGFobject {
         y
         ^
         |
-        0    2    4    6    
+        0    2    4    6
         |
         1    3    5    7
         |
