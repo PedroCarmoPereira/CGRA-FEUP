@@ -26,16 +26,12 @@ class MyScene extends CGFscene {
         this.parallelogram = new MyParallelogram(this);
         this.tangram = new MyTangram(this);
 
-        this.cube = new MyUnitCube(this);
-        this.framedT = new MyFramedTangram(this);
-
         //Objects connected to MyInterface
         this.displayAxis = true;
         this.displayDiamond = true;
         this.displayTriangle = true;
         this.displayParallelogram = true;
         this.displayTangram = true;
-        this.displayCube = false;
         this.scaleFactor = 1;
     }
     initLights() {
@@ -76,11 +72,9 @@ class MyScene extends CGFscene {
                     0.0, 0.0, 0.0, 1.0];
         this.multMatrix(sca);
 
-        //this.rotate(3*Math.PI/2, 1, 0, 0);
 
-        /*if (this.displayTangram)
-        this.tangram.display();*/
-        this.framedT.display();
+        if (this.displayTangram)
+        this.tangram.display();
 
         // ---- END Primitive drawing section
     }

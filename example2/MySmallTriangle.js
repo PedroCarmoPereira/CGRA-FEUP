@@ -1,17 +1,17 @@
-class MyTriangle extends CGFobject {
+class MySmallTriangle extends CGFobject {
 	constructor(scene) {
 		super(scene);
 		this.initBuffers();
 	}
 	initBuffers() {
 		this.vertices = [
-		   -1,-1, 0,	//0
-			1,-1, 0,	//1
-		   -1, 1, 0,	//2
+			-0.5, -0.5, 0,	//0
+			0.5, -0.5, 0,	//1
+			-0.5, 0.5, 0,	//2
 
-		   -1,-1, 0,	//3
-			1,-1, 0,	//4
-		   -1, 1, 0,	//5
+			-0.5, -0.5, 0,	//3
+			0.5, -0.5, 0,	//4
+			-0.5, 0.5, 0,	//5
 		];
 
 		//Counter-clockwise reference of vertices
