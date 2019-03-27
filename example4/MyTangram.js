@@ -15,9 +15,9 @@ initObjects() {
 }
   
 	display(){
-    var pieceColor;
+    var pieceColor = this.scene.hexToRgbA('#00CC00')
     this.scene.pushMatrix();
-    this.scene.tangramMaterial.apply();
+    this.scene.customMaterial.apply();
     this.scene.translate(-2.4, 2.75, 0);
     this.scene.rotate(Math.PI/6, 0, 0, 1);
     this.diamond.display();
