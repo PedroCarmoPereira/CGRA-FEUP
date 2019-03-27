@@ -15,9 +15,14 @@ initObjects() {
 }
   
 	display(){
-    var pieceColor = this.scene.hexToRgbA('#00CC00')
+    
+    var pieceColor = this.scene.hexToRgbA('#00CC00');
+    this.scene.materialColor = new CGFappearance(this.scene);
+    this.scene.materialColor.setAmbient(pieceColor[0], pieceColor[1], pieceColor[2], 1.0);
+    this.scene.materialColor.setDiffuse(pieceColor[0], pieceColor[1], pieceColor[2], 1.0);
+    this.scene.materialColor.setSpecular(pieceColor[0], pieceColor[1], pieceColor[2], 1.0);
     this.scene.pushMatrix();
-    this.scene.customMaterial.apply();
+    this.scene.tangramMaterial.apply();
     this.scene.translate(-2.4, 2.75, 0);
     this.scene.rotate(Math.PI/6, 0, 0, 1);
     this.diamond.display();
@@ -64,14 +69,8 @@ initObjects() {
     this.scene.popMatrix();
 
     pieceColor = this.scene.hexToRgbA('#FFFF00')
-    this.scene.materialColor = new CGFappearance(this.scene);
-    this.scene.materialColor.setAmbient(pieceColor[0], pieceColor[1], pieceColor[2], 1.0);
-    this.scene.materialColor.setDiffuse(pieceColor[0], pieceColor[1], pieceColor[2], 1.0);
-    this.scene.materialColor.setSpecular(pieceColor[0], pieceColor[1], pieceColor[2], 1.0);
-    this.scene.materialColor.setShininess(10.0);
     this.scene.pushMatrix(); //YELLOW
     this.scene.rotate(Math.PI, 0, 1, 0);
-    this.scene.materialColor.apply();
     this.scene.rotate(Math.PI/2, 0, 0, 1);
     this.parallelogram.display();
     this.scene.popMatrix();
@@ -102,6 +101,7 @@ initObjects() {
 
     this.redtriangle.display();
     this.scene.popMatrix();
+
   }
 
   enableNormalViz(){
