@@ -60,6 +60,5 @@ class MyDiamond extends CGFobject {
 	updateTexCoords(coords) {
 		this.texCoords = [...coords];
 		this.updateTexCoordsGLBuffers();
-		console.log("PENIS");
 	}
 }

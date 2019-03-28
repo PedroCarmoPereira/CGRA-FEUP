@@ -26,6 +26,8 @@ class MyScene extends CGFscene {
         this.quad = new MyQuad(this);
         this.tangram = new MyTangram(this);
 
+        this.unitCubeQuad = new MyUnitCubeQuad(this);
+
         //------ Applied Material
         this.quadMaterial = new CGFappearance(this);
         this.quadMaterial.setAmbient(0.1, 0.1, 0.1, 1);
@@ -42,6 +44,31 @@ class MyScene extends CGFscene {
         this.tangramMaterial.setShininess(10.0);
         this.tangramMaterial.loadTexture('images/tangram.png');
         this.tangramMaterial.setTextureWrap('REPEAT', 'REPEAT');
+        
+
+        this.mineBotMat = new CGFappearance(this);
+        this.mineBotMat.setAmbient(0.1, 0.1, 0.1, 1);
+        this.mineBotMat.setDiffuse(0.9, 0.9, 0.9, 1);
+        this.mineBotMat.setSpecular(0.1, 0.1, 0.1, 1);
+        this.mineBotMat.setShininess(10.0);
+        this.mineBotMat.loadTexture('images/mineBottom.png');
+        this.mineBotMat.setTextureWrap('REPEAT', 'REPEAT');
+
+        this.mineTopMat = new CGFappearance(this);
+        this.mineTopMat.setAmbient(0.1, 0.1, 0.1, 1);
+        this.mineTopMat.setDiffuse(0.9, 0.9, 0.9, 1);
+        this.mineTopMat.setSpecular(0.1, 0.1, 0.1, 1);
+        this.mineTopMat.setShininess(10.0);
+        this.mineTopMat.loadTexture('images/mineTop.png');
+        this.mineTopMat.setTextureWrap('REPEAT', 'REPEAT');
+
+        this.mineSideMat = new CGFappearance(this);
+        this.mineSideMat.setAmbient(0.1, 0.1, 0.1, 1);
+        this.mineSideMat.setDiffuse(0.9, 0.9, 0.9, 1);
+        this.mineSideMat.setSpecular(0.1, 0.1, 0.1, 1);
+        this.mineSideMat.setShininess(10.0);
+        this.mineSideMat.loadTexture('images/mineSide.png');
+        this.mineSideMat.setTextureWrap('REPEAT', 'REPEAT');
 
         //this.tangramMaterial = new CGFappearance(this);
         //------
@@ -103,9 +130,9 @@ class MyScene extends CGFscene {
     }
 
     setDefaultAppearance() {
-        this.setAmbient(0.2, 0.4, 0.8, 1.0);
-        this.setDiffuse(0.2, 0.4, 0.8, 1.0);
-        this.setSpecular(0.2, 0.4, 0.8, 1.0);
+        this.setAmbient(1, 1, 1, 1.0);
+        this.setDiffuse(1, 1, 1, 1.0);
+        this.setSpecular(1, 1, 1, 1.0);
         this.setShininess(10.0);
     }
 
@@ -155,11 +182,12 @@ class MyScene extends CGFscene {
         // this.gl.texParameteri(this.gl.TEXTURE_2D, this.gl.TEXTURE_MAG_FILTER, this.gl.NEAREST);
 
         //this.quad.display();
-        
+       /* 
         this.pushMatrix();
         this.scale(0.2, 0.2, 0.2);
         this.tangram.display();
-        this.popMatrix();
+        this.popMatrix();*/
+        this.unitCubeQuad.display();
 
         // ---- END Primitive drawing section
     }
