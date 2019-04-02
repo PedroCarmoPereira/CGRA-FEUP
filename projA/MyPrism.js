@@ -5,7 +5,7 @@ class MyPrism extends CGFobject{
         this.slices = slices;
         this.stacks = stacks;
         this.initBuffers();
-    }
+    };
 
 
     initBuffers(){
@@ -38,5 +38,5 @@ class MyPrism extends CGFobject{
     
         this.primitiveType = this.scene.gl.TRIANGLES;
         this.initGLBuffers();
-    }
+    };
 }
