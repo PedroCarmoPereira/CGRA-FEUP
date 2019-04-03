@@ -10,6 +10,7 @@ class MyScene extends CGFscene {
         super.init(application);
         this.initCameras();
         this.initLights();
+        this.enableTextures(true);
 
         //Background color
         this.gl.clearColor(0.0, 0.0, 0.0, 1.0);
@@ -21,7 +22,7 @@ class MyScene extends CGFscene {
 
         //Initialize scene objects
         this.axis = new CGFaxis(this);
-        this.prism = new MyCylinder(this, 50, 50);
+        this.tree = new MyTree(this, 5, 1.5, 5, 5, 'images/bark.jpg', 'images/folliage.jpeg');
 
         //Objects connected to MyInterface
     }
@@ -56,7 +57,7 @@ class MyScene extends CGFscene {
 
         //Apply default appearance
         this.setDefaultAppearance();
-        this.prism.display();
+        this.tree.display();
 
         // ---- BEGIN Primitive drawing section
 
