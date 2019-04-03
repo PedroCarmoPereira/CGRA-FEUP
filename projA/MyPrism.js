@@ -14,15 +14,15 @@ class MyPrism extends CGFobject{
         this.normals = [];
         this.texCoords = [];
         
-        var ang = 2*Math.PI/this.slices;
+        var angle = 2*Math.PI/this.slices;
         for(let j =0; j <= this.stacks; j++){
             for(let i=0; i < this.slices; i++){
 
-                this.vertices.push(Math.cos(ang *i),Math.sin(ang*i),j*1/this.stacks);
-                this.vertices.push(Math.cos((i+1)*ang),Math.sin((i+1)*ang),j*1/this.stacks);
+                this.vertices.push(Math.cos(angle *i),Math.sin(angle*i),j*1/this.stacks);
+                this.vertices.push(Math.cos((i+1)*angle),Math.sin((i+1)*angle),j*1/this.stacks);
       
-                this.normals.push(Math.cos(ang*i+ang/2),Math.sin(ang*i+ang/2),0);
-                this.normals.push(Math.cos(ang*i+ang/2),Math.sin(ang*i+ang/2),0);
+                this.normals.push(Math.cos(angle*i+angle/2),Math.sin(angle*i+angle/2),0);
+                this.normals.push(Math.cos(angle*i+angle/2),Math.sin(angle*i+angle/2),0);
         
                 this.texCoords.push(0+j%2, 0);
                 this.texCoords.push(0+j%2, 1);
