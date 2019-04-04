@@ -24,6 +24,7 @@ class MyScene extends CGFscene {
         this.axis = new CGFaxis(this);
         this.tree = new MyTree(this, 5, 1.5, 5, 5, 'images/bark.jpg', 'images/folliage.jpeg');
         this.group_patch = new MyTreeGroupPatch(this);
+        this.row_patch = new MyTreeRowPatch(this, 5);
 
         //Objects connected to MyInterface
     }
@@ -58,7 +59,7 @@ class MyScene extends CGFscene {
 
         //Apply default appearance
         this.setDefaultAppearance();
-        this.group_patch.display();
+        this.row_patch.display();
 
         // ---- BEGIN Primitive drawing section
 
