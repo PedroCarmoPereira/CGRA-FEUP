@@ -22,7 +22,7 @@ class MyScene extends CGFscene {
 
         //Initialize scene objects
         this.axis = new CGFaxis(this);
-        this.tree = new MyTree(this, 5, 1.5, 5, 5, 'images/bark.jpg', 'images/folliage.jpeg');
+        this.tree = new MyTreeRowPatch(this, 5);
 
         //Objects connected to MyInterface
     }
