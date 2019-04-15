@@ -22,10 +22,8 @@ class MyScene extends CGFscene {
 
         //Initialize scene objects
         this.axis = new CGFaxis(this);
-        this.tree = new MyTree(this, 5, 1.5, 5, 5, 'images/bark.jpg', 'images/folliage.jpeg');
-        this.group_patch = new MyTreeGroupPatch(this);
-        this.row_patch = new MyTreeRowPatch(this, 5);
-        this.hill = new MyVoxelHill(this, 4);
+        this.house = new MyHouse(this, 'images/wall.png', 'images/column.jpg', 'images/roof.png', 'images/door.jpeg');
+        this.treeRow = new MyTreeRowPatch(this, 10);
 
         //Objects connected to MyInterface
     }
@@ -60,7 +58,8 @@ class MyScene extends CGFscene {
 
         //Apply default appearance
         this.setDefaultAppearance();
-        this.hill.display();
+        this.house.display();
+        this.treeRow.display();
 
         // ---- BEGIN Primitive drawing section
 

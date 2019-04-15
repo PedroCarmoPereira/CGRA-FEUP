@@ -9,12 +9,13 @@ serialInclude(['../lib/CGF.js',
                 'MyPyramid.js',
                 'MyQuad.js',
                 'MyUnitCubeQuad.js',
-                'MyTree.js',
-                'MyScene.js',
-                'MyInterface.js',
+                'MyTree.js',                
                 'MyTreeGroupPatch.js',
                 'MyTreeRowPatch.js',
                 'MyVoxelHill.js',
+                'MyHouse.js',
+                'MyScene.js',
+                'MyInterface.js',
 
 main=function()
 {

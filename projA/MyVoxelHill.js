@@ -42,20 +42,5 @@ class MyVoxelHill extends CGFobject {
                 }
             }
         }
-
-        /*for(var i = 1; i < this.level; i++){
-            for(var j = 0; j < (i+1+i); j++){
-                if(j != 0 && j != (i+1+i)){
-                    this.scene.pushMatrix();
-                    this.scene.translate(i, -1*i, j-i);
-                    this.cube.display();
-                    this.scene.popMatrix();
-                    this.scene.pushMatrix();
-                    this.scene.translate(-i, -1*i, j-i);
-                    this.cube.display();
-                    this.scene.popMatrix();
-                }
-            }   
-        } */   
     }
 }
