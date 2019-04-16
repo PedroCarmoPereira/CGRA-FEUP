@@ -50,11 +50,30 @@ class MyScene extends CGFscene {
     };
 
     initLights() {
-        this.lights[0].setPosition(15, 2, 5, 1);
-        this.lights[0].setDiffuse(1.0, 1.0, 1.0, 1.0);
+        this.lights[0].setPosition(50, 65, -50, 1);
+        this.lights[0].setDiffuse(2.0, 2.0, 2.0, 1.0);
+        this.lights[0].setSpecular(1.0, 1.0, 1.0, 1.0);
+        this.lights[0].setLinearAttenuation(0); 
         this.lights[0].enable();
+        this.lights[0].setVisible(false);
         this.lights[0].update();
-    };
+
+        this.lights[1].setPosition(50, 75, -50, 1);
+        this.lights[1].setDiffuse(0.5, 0.5, 0.7, 1.0);
+        this.lights[1].setSpecular(1.0, 1.0, 1.0, 1.0);
+        this.lights[1].setLinearAttenuation(0.01); 
+        this.lights[1].disable();
+        this.lights[1].setVisible(false);
+        this.lights[1].update();
+
+        this.lights[2].setPosition(5, 0.5, -5, 1);
+        this.lights[2].setDiffuse(1.9, 0.2, 0.1, 1.0);
+        this.lights[2].setSpecular(0.5, 0.5, 0.8, 1.0);
+        this.lights[2].setLinearAttenuation(0.5); 
+        this.lights[2].disable();
+        this.lights[2].setVisible(false);
+        this.lights[2].update();
+    }
     initCameras() {
         this.camera = new CGFcamera(0.4, 0.1, 500, vec3.fromValues(75, 150, 75), vec3.fromValues(0, 0, 0));
     };
@@ -105,6 +124,10 @@ class MyScene extends CGFscene {
         this.loadIdentity();
         // Apply transformations corresponding to the camera position relative to the origin
         this.applyViewMatrix();
+
+        this.lights[0].update();
+        this.lights[1].update();
+        this.lights[2].update();
 
         // Draw axis
         this.axis.display();
