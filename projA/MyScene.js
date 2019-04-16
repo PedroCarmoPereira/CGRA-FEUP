@@ -20,10 +20,13 @@ class MyScene extends CGFscene {
         this.gl.enable(this.gl.CULL_FACE);
         this.gl.depthFunc(this.gl.LEQUAL);
 
+        this.skyboxMode = "Day";
+
         //Initialize scene objects
         this.axis = new CGFaxis(this);
         this.house = new MyHouse(this, 'images/wall.png', 'images/column.jpg', 'images/roof.png', 'images/door.jpeg');
         this.treeRow = new MyTreeRowPatch(this, 10);
+        this.skybox = new MyCubeMap(this, this.skyboxMode);
 
         //Objects connected to MyInterface
     }
@@ -42,6 +45,11 @@ class MyScene extends CGFscene {
         this.setSpecular(0.2, 0.4, 0.8, 1.0);
         this.setShininess(10.0);
     }
+
+    updateSkybox(){
+        this.skybox.setMode(this.skyboxMode);
+    }
+
     display() {
         // ---- BEGIN Background, camera and axis setup
         // Clear image and depth buffer everytime we update the scene
@@ -60,6 +68,7 @@ class MyScene extends CGFscene {
         this.setDefaultAppearance();
         this.house.display();
         this.treeRow.display();
+        this.skybox.display();
 
         // ---- BEGIN Primitive drawing section
 

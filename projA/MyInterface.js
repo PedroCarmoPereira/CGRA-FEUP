@@ -14,6 +14,7 @@ class MyInterface extends CGFinterface {
         // http://workshop.chromeexperiments.com/examples/gui
         this.gui = new dat.GUI();
         
+        this.gui.add(this.scene, 'skyboxMode', ["Day", "Night"]).name('Skybox').onChange(this.scene.updateSkybox.bind(this.scene));
         var obj = this;
 
         return true;
