@@ -27,6 +27,14 @@ class MyScene extends CGFscene {
         this.house = new MyHouse(this, 'images/wall.png', 'images/column.jpg', 'images/roof.png', 'images/door.jpeg');
         this.treeRow = new MyTreeRowPatch(this, 10);
         this.skybox = new MyCubeMap(this, this.skyboxMode);
+        this.plane = new MyQuad(this);
+        this.planeMaterial = new CGFappearance(this);
+        this.planeMaterial.setAmbient(0.1, 0.1, 0.1, 1);
+        this.planeMaterial.setDiffuse(0.9, 0.9, 0.9, 1);
+        this.planeMaterial.setSpecular(0.1, 0.1, 0.1, 1);
+        this.planeMaterial.setShininess(10.0);
+        this.planeMaterial.loadTexture('images/mineTop.jpeg');
+        this.planeMaterial.setTextureWrap('REPEAT', 'REPEAT');
 
         //Objects connected to MyInterface
     }
@@ -69,6 +77,13 @@ class MyScene extends CGFscene {
         this.house.display();
         this.treeRow.display();
         this.skybox.display();
+
+        this.planeMaterial.apply();
+        this.pushMatrix();
+        this.scale(200, 200, 200);
+        this.rotate(Math.PI/2 + Math.PI, 1, 0, 0);
+        this.plane.display();
+        this.popMatrix();
 
         // ---- BEGIN Primitive drawing section
 
