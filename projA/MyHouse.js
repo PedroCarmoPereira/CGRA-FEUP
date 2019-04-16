@@ -12,7 +12,6 @@ class MyHouse extends CGFobject{
     initObjects(){
         this.block = new MyUnitCubeQuad(this.scene);
         let sides = Math.ceil(Math.random()*5 + 5);
-        console.log("Num sides: " + sides);
         this.col0 = new MyPrism(this.scene, sides, sides);
         this.col1 = new MyPrism(this.scene, sides, sides);
         this.col2 = new MyPrism(this.scene, sides, sides);

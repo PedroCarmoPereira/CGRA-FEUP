@@ -28,8 +28,10 @@ class MyScene extends CGFscene {
         this.house = new MyHouse(this, 'images/wall.png', 'images/column.jpg', 'images/roof.png', 'images/door.jpeg');
         this.treeRow0 = new MyTreeRowPatch(this, 10);
         this.treeRow1 = new MyTreeRowPatch(this, -10);
-        this.treeGroup = new MyTreeGroupPatch(this);
+        this.treeGroup0 = new MyTreeGroupPatch(this);
+        this.treeGroup1 = new MyTreeGroupPatch(this);
         this.skybox = new MyCubeMap(this, this.skyboxMode);
+        this.lake = new MyLake(this, 3, 'images/water.jpg', -20, -20);
 
         let lvls = Math.floor(Math.random() * 7) + 2;
         this.hill0 = new MyVoxelHill(this, lvls);
@@ -93,12 +95,12 @@ class MyScene extends CGFscene {
     displayTreeGroups(){
         this.pushMatrix();
         this.translate(-7.5, 0, 20);
-        this.treeGroup.display();
+        this.treeGroup0.display();
         this.popMatrix();
 
         this.pushMatrix();
         this.translate(-7.5, 0, -40);
-        this.treeGroup.display();
+        this.treeGroup1.display();
         this.popMatrix();
     }
 
@@ -152,6 +154,7 @@ class MyScene extends CGFscene {
         this.treeRow0.display();
         this.treeRow1.display();
         this.skybox.display();
+        this.lake.display();
 
         this.displayHills();
         this.displayTreeGroups();
