@@ -26,7 +26,9 @@ class MyScene extends CGFscene {
         //Initialize scene objects
         this.axis = new CGFaxis(this);
         this.house = new MyHouse(this, 'images/wall.png', 'images/column.jpg', 'images/roof.png', 'images/door.jpeg');
-        this.treeRow = new MyTreeRowPatch(this, 10);
+        this.treeRow0 = new MyTreeRowPatch(this, 10);
+        this.treeRow1 = new MyTreeRowPatch(this, -10);
+        this.treeGroup = new MyTreeGroupPatch(this);
         this.skybox = new MyCubeMap(this, this.skyboxMode);
 
         let lvls = Math.floor(Math.random() * 7) + 2;
@@ -88,6 +90,18 @@ class MyScene extends CGFscene {
         this.skybox.setMode(this.skyboxMode);
     };
 
+    displayTreeGroups(){
+        this.pushMatrix();
+        this.translate(-7.5, 0, 20);
+        this.treeGroup.display();
+        this.popMatrix();
+
+        this.pushMatrix();
+        this.translate(-7.5, 0, -40);
+        this.treeGroup.display();
+        this.popMatrix();
+    }
+
     displayHills(){
         this.pushMatrix();
         this.scale(2, 2, 2,);
@@ -135,10 +149,12 @@ class MyScene extends CGFscene {
         //Apply default appearance
         this.setDefaultAppearance();
         this.house.display();
-        this.treeRow.display();
+        this.treeRow0.display();
+        this.treeRow1.display();
         this.skybox.display();
 
         this.displayHills();
+        this.displayTreeGroups();
 
         this.planeMaterial.apply();
         this.pushMatrix();
