@@ -10,7 +10,7 @@ class MyVoxelHill extends CGFobject {
 
     initObjects() {
 
-        this.cube = new MyUnitCubeQuad(this.scene, this.topTex, this.sideTex, this.botTex);
+        this.cube = new MyUnitCubeQuad(this.scene, true, 'images/mineTop.png', 'images/mineBottom.png', 'images/mineSide.png');
     }
   
     display(){

@@ -29,13 +29,13 @@ class MyScene extends CGFscene {
         this.treeRow = new MyTreeRowPatch(this, 10);
         this.skybox = new MyCubeMap(this, this.skyboxMode);
 
-        let lvls = (Math.random()*4) + 3;
+        let lvls = Math.floor(Math.random() * 7) + 2;
         this.hill0 = new MyVoxelHill(this, lvls);
-        lvls = (Math.random()*4) + 3;
+        lvls = Math.floor(Math.random() * 7) + 2;
         this.hill1 = new MyVoxelHill(this, lvls);
-        lvls = (Math.random()*4) + 3;
+        lvls = Math.floor(Math.random() * 7) + 2;
         this.hill2 = new MyVoxelHill(this, lvls);
-        lvls = (Math.random()*4) + 3;
+        lvls = Math.floor(Math.random() * 7) + 2;
         this.hill3 = new MyVoxelHill(this, lvls);
 
         this.plane = new MyQuad(this);
