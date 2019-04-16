@@ -1,13 +1,16 @@
 class MyVoxelHill extends CGFobject {
-	constructor(scene, level) {
+	constructor(scene, level, topTex, sideTex, botTex) {
     super(scene);
     this.level = level;
+    this.topTex = topTex;
+    this.sideTex = sideTex;
+    this.botTex = botTex;
     this.initObjects();
 }
 
     initObjects() {
 
-        this.cube = new MyUnitCubeQuad(this.scene);
+        this.cube = new MyUnitCubeQuad(this.scene, this.topTex, this.sideTex, this.botTex);
     }
   
     display(){

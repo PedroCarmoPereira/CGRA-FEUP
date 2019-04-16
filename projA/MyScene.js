@@ -20,6 +20,7 @@ class MyScene extends CGFscene {
         this.gl.enable(this.gl.CULL_FACE);
         this.gl.depthFunc(this.gl.LEQUAL);
 
+        //Objects connected to MyInterface
         this.skyboxMode = "Day";
 
         //Initialize scene objects
@@ -27,35 +28,71 @@ class MyScene extends CGFscene {
         this.house = new MyHouse(this, 'images/wall.png', 'images/column.jpg', 'images/roof.png', 'images/door.jpeg');
         this.treeRow = new MyTreeRowPatch(this, 10);
         this.skybox = new MyCubeMap(this, this.skyboxMode);
+
+        let lvls = (Math.random()*4) + 3;
+        this.hill0 = new MyVoxelHill(this, lvls);
+        lvls = (Math.random()*4) + 3;
+        this.hill1 = new MyVoxelHill(this, lvls);
+        lvls = (Math.random()*4) + 3;
+        this.hill2 = new MyVoxelHill(this, lvls);
+        lvls = (Math.random()*4) + 3;
+        this.hill3 = new MyVoxelHill(this, lvls);
+
         this.plane = new MyQuad(this);
         this.planeMaterial = new CGFappearance(this);
         this.planeMaterial.setAmbient(0.1, 0.1, 0.1, 1);
         this.planeMaterial.setDiffuse(0.9, 0.9, 0.9, 1);
         this.planeMaterial.setSpecular(0.1, 0.1, 0.1, 1);
         this.planeMaterial.setShininess(10.0);
-        this.planeMaterial.loadTexture('images/mineTop.jpeg');
+        this.planeMaterial.loadTexture('images/plane.jpeg');
         this.planeMaterial.setTextureWrap('REPEAT', 'REPEAT');
 
-        //Objects connected to MyInterface
-    }
+    };
+
     initLights() {
         this.lights[0].setPosition(15, 2, 5, 1);
         this.lights[0].setDiffuse(1.0, 1.0, 1.0, 1.0);
         this.lights[0].enable();
         this.lights[0].update();
-    }
+    };
     initCameras() {
-        this.camera = new CGFcamera(0.4, 0.1, 500, vec3.fromValues(15, 15, 15), vec3.fromValues(0, 0, 0));
-    }
+        this.camera = new CGFcamera(0.4, 0.1, 500, vec3.fromValues(75, 150, 75), vec3.fromValues(0, 0, 0));
+    };
     setDefaultAppearance() {
         this.setAmbient(0.2, 0.4, 0.8, 1.0);
         this.setDiffuse(0.2, 0.4, 0.8, 1.0);
         this.setSpecular(0.2, 0.4, 0.8, 1.0);
         this.setShininess(10.0);
-    }
+    };
 
     updateSkybox(){
         this.skybox.setMode(this.skyboxMode);
+    };
+
+    displayHills(){
+        this.pushMatrix();
+        this.scale(2, 2, 2,);
+        this.translate(25, this.hill0.level/2 + 2, 25);
+        this.hill0.display();
+        this.popMatrix();
+        
+        this.pushMatrix();
+        this.scale(2, 2, 2,);
+        this.translate(-25, this.hill1.level/2 + 2, 25);
+        this.hill1.display();
+        this.popMatrix();
+
+        this.pushMatrix();
+        this.scale(2, 2, 2,);
+        this.translate(25, this.hill2.level/2 + 2, -25);
+        this.hill2.display();
+        this.popMatrix();
+
+        this.pushMatrix();
+        this.scale(2, 2, 2,);
+        this.translate(-25, this.hill3.level/2 + 2, -25);
+        this.hill3.display();
+        this.popMatrix();
     }
 
     display() {
@@ -77,6 +114,8 @@ class MyScene extends CGFscene {
         this.house.display();
         this.treeRow.display();
         this.skybox.display();
+
+        this.displayHills();
 
         this.planeMaterial.apply();
         this.pushMatrix();
