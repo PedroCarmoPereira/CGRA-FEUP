@@ -31,14 +31,14 @@ class MyScene extends CGFscene {
 
         let lvls = Math.floor(Math.random() * 7) + 2;
         this.hill0 = new MyVoxelHill(this, lvls);
-        lvls = Math.floor(Math.random() * 7) + 2;
+        lvls = Math.floor(Math.random() * 6) + 3;
         this.hill1 = new MyVoxelHill(this, lvls);
-        lvls = Math.floor(Math.random() * 7) + 2;
+        lvls = Math.floor(Math.random() * 5) + 3;
         this.hill2 = new MyVoxelHill(this, lvls);
-        lvls = Math.floor(Math.random() * 7) + 2;
+        lvls = Math.floor(Math.random() * 8) + 2;
         this.hill3 = new MyVoxelHill(this, lvls);
 
-        this.plane = new MyQuad(this);
+        this.plane = new MyQuad(this, [0, 200, 200, 200, 0, 0, 200, 0]);
         this.planeMaterial = new CGFappearance(this);
         this.planeMaterial.setAmbient(0.1, 0.1, 0.1, 1);
         this.planeMaterial.setDiffuse(0.9, 0.9, 0.9, 1);
