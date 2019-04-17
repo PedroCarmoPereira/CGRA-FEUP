@@ -32,6 +32,7 @@ class MyScene extends CGFscene {
         this.treeGroup1 = new MyTreeGroupPatch(this);
         this.skybox = new MyCubeMap(this, this.skyboxMode);
         this.lake = new MyLake(this, 3, 'images/water.jpg', -20, -20);
+        this.campfire = new MyCampfire(this, 'images/furnace_off.png', 5, 0.5, -5);
 
         let lvls = Math.floor(Math.random() * 7) + 2;
         this.hill0 = new MyVoxelHill(this, lvls);
@@ -72,7 +73,7 @@ class MyScene extends CGFscene {
         this.lights[1].setVisible(false);
         this.lights[1].update();
 
-        this.lights[2].setPosition(5, 0.5, -5, 1);
+        this.lights[2].setPosition(5, 0.5, -4, 1);
         this.lights[2].setDiffuse(1.9, 0.2, 0.1, 1.0);
         this.lights[2].setSpecular(0.5, 0.5, 0.8, 1.0);
         this.lights[2].setLinearAttenuation(0.5); 
@@ -96,11 +97,13 @@ class MyScene extends CGFscene {
             this.lights[0].disable();
             this.lights[1].enable();
             this.lights[2].enable();
+            this.campfire = new MyCampfire(this, 'images/furnace_on.png', 5, 0.5, -5);
         }
         else{
             this.lights[0].enable();
             this.lights[1].disable();
             this.lights[2].disable();
+            this.campfire = new MyCampfire(this, 'images/furnace_off.png', 5, 0.5, -5);
         }
     };
 
@@ -157,8 +160,6 @@ class MyScene extends CGFscene {
         this.lights[1].update();
         this.lights[2].update();
 
-        // Draw axis
-        this.axis.display();
 
         if (this.displayTextures) this.enableTextures(false);
         else this.enableTextures(true);       
@@ -170,6 +171,7 @@ class MyScene extends CGFscene {
         this.treeRow1.display();
         this.skybox.display();
         this.lake.display();
+        this.campfire.display();
 
         this.displayHills();
         this.displayTreeGroups();

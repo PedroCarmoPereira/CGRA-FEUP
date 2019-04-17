@@ -16,6 +16,7 @@ serialInclude(['../lib/CGF.js',
                 'MyHouse.js',
                 'MyCubeMap.js',
                 'MyLake.js',
+                'MyCampfire.js',
                 'MyScene.js',
                 'MyInterface.js',
 
