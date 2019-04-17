@@ -88,6 +88,16 @@ class MyScene extends CGFscene {
 
     updateSkybox(){
         this.skybox.setMode(this.skyboxMode);
+        if(this.skyboxMode == 'Night'){
+            this.lights[0].disable();
+            this.lights[1].enable();
+            this.lights[2].enable();
+        }
+        else{
+            this.lights[0].enable();
+            this.lights[1].disable();
+            this.lights[2].disable();
+        }
     };
 
     displayTreeGroups(){
