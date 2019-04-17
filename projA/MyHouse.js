@@ -23,32 +23,32 @@ class MyHouse extends CGFobject{
     initTextures(){
         this.roofMaterial = new CGFappearance(this.scene);
         this.roofMaterial.setAmbient(0.1, 0.1, 0.1, 1);
-        this.roofMaterial.setDiffuse(0.9, 0.9, 0.9, 1);
-        this.roofMaterial.setSpecular(0.1, 0.1, 0.1, 1);
+        this.roofMaterial.setDiffuse(1.0, 1.0, 1.0, 1);
+        this.roofMaterial.setSpecular(0.0, 0.0, 0.0, 1);
         this.roofMaterial.setShininess(10.0);
         this.roofMaterial.loadTexture(this.roofTexPath);
         this.roofMaterial.setTextureWrap('REPEAT', 'REPEAT');
 
         this.doorMaterial = new CGFappearance(this.scene);
         this.doorMaterial.setAmbient(0.1, 0.1, 0.1, 1);
-        this.doorMaterial.setDiffuse(0.9, 0.9, 0.9, 1);
-        this.doorMaterial.setSpecular(0.1, 0.1, 0.1, 1);
+        this.doorMaterial.setDiffuse(1.0, 1.0, 1.0, 1);
+        this.doorMaterial.setSpecular(0.0, 0.0, 0.0, 1);
         this.doorMaterial.setShininess(10.0);
         this.doorMaterial.loadTexture(this.doorTexPath);
         this.doorMaterial.setTextureWrap('REPEAT', 'REPEAT');
 
         this.wallMaterial = new CGFappearance(this.scene);
         this.wallMaterial.setAmbient(0.1, 0.1, 0.1, 1);
-        this.wallMaterial.setDiffuse(0.9, 0.9, 0.9, 1);
-        this.wallMaterial.setSpecular(0.1, 0.1, 0.1, 1);
+        this.wallMaterial.setDiffuse(1.0, 1.0, 1.0, 1);
+        this.wallMaterial.setSpecular(0.0, 0.0, 0.0, 1);
         this.wallMaterial.setShininess(10.0);
         this.wallMaterial.loadTexture(this.wallTexPath);
         this.wallMaterial.setTextureWrap('REPEAT', 'REPEAT');
 
         this.colMaterial = new CGFappearance(this.scene);
         this.colMaterial.setAmbient(0.1, 0.1, 0.1, 1);
-        this.colMaterial.setDiffuse(0.9, 0.9, 0.9, 1);
-        this.colMaterial.setSpecular(0.1, 0.1, 0.1, 1);
+        this.colMaterial.setDiffuse(1.0, 1.0, 1.0, 1);
+        this.colMaterial.setSpecular(0.0, 0.0, 0.0, 1);
         this.colMaterial.setShininess(10.0);
         this.colMaterial.loadTexture(this.colTexPath);
         this.colMaterial.setTextureWrap('REPEAT', 'REPEAT');
@@ -101,7 +101,8 @@ class MyHouse extends CGFobject{
         this.scene.popMatrix();
 
         this.scene.pushMatrix();
-        this.scene.translate(0, 1.1, 1.4);
+        this.scene.translate(0, 1.1, -1.4);
+        this.scene.rotate(Math.PI, 0, 1, 0);
         this.scene.scale(1, 2.2, 1);
         this.doorMaterial.apply();
         this.door.display();

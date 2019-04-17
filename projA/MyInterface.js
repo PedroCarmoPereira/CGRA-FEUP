@@ -15,6 +15,7 @@ class MyInterface extends CGFinterface {
         this.gui = new dat.GUI();
         
         this.gui.add(this.scene, 'skyboxMode', ["Day", "Night"]).name('Skybox').onChange(this.scene.updateSkybox.bind(this.scene));
+        this.gui.add(this.scene, 'displayTextures').name('Textures');
         var obj = this;
 
         return true;

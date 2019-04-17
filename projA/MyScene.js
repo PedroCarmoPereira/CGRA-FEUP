@@ -51,6 +51,8 @@ class MyScene extends CGFscene {
         this.planeMaterial.loadTexture('images/plane.jpeg');
         this.planeMaterial.setTextureWrap('REPEAT', 'REPEAT');
 
+        this.displayTextures = false;
+
     };
 
     initLights() {
@@ -157,6 +159,9 @@ class MyScene extends CGFscene {
 
         // Draw axis
         this.axis.display();
+
+        if (this.displayTextures) this.enableTextures(false);
+        else this.enableTextures(true);       
 
         //Apply default appearance
         this.setDefaultAppearance();

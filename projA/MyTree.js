@@ -9,14 +9,13 @@ class MyTree extends CGFobject {
         this.trunkTexPath = trunkTexPath;
         this.ttTexPath = ttTexPath;
         this.slices = Math.floor(Math.random() * 5 + 5);
-        this.stacks = this.slices;
         this.initObjects();
         this.initTextures();
     };
 
     initObjects(){
-        this.trunk = new MyCylinder(this.scene, this.slices, this.stacks);
-        this.ttop = new MyCone(this.scene, this.slices, this.stacks);
+        this.trunk = new MyCylinder(this.scene, this.slices);
+        this.ttop = new MyCone(this.scene, this.slices);
     };
 
     initTextures(){
