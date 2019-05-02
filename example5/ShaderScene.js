@@ -56,6 +56,9 @@ class ShaderScene extends CGFscene {
 		this.appearance.setTextureWrap('REPEAT', 'REPEAT');
 
 		this.texture2 = new CGFtexture(this, "textures/FEUP.jpg");
+		
+		this.waterTex = new CGFtexture(this, "textures/waterTex.jpg");
+		this.waterMap = new CGFtexture(this, "textures/waterMap.jpg");
 
 		// shaders initialization
 
@@ -69,7 +72,8 @@ class ShaderScene extends CGFscene {
 			new CGFshader(this.gl, "shaders/texture3anim.vert", "shaders/texture3anim.frag"),
 			new CGFshader(this.gl, "shaders/texture1.vert", "shaders/sepia.frag"),
 			new CGFshader(this.gl, "shaders/texture1.vert", "shaders/convolution.frag"),
-			new CGFshader(this.gl, "shaders/blueyellow.vert", "shaders/blueyellow.frag")
+			new CGFshader(this.gl, "shaders/blueyellow.vert", "shaders/blueyellow.frag"),
+			new CGFshader(this.gl, "shaders/water.vert", "shaders/water.frag")
 
 		];
 
@@ -78,6 +82,9 @@ class ShaderScene extends CGFscene {
 		this.testShaders[5].setUniformsValues({ uSampler2: 1 });
 		this.testShaders[6].setUniformsValues({ uSampler2: 1 });
 		this.testShaders[6].setUniformsValues({ timeFactor: 0 });
+
+		this.testShaders[10].setUniformsValues({ uSampler2: 1 });
+		this.testShaders[10].setUniformsValues({ uSamplerWaterTex: 3 });
 
 
 		// Shaders interface variables
@@ -92,7 +99,8 @@ class ShaderScene extends CGFscene {
 			'Animation example': 6,
 			'Sepia': 7,
 			'Convolution': 8,
-			'Blue and Yellow': 9
+			'Blue and Yellow': 9,
+			'Water': 10
 		};
 
 		// shader code panels references
@@ -177,6 +185,9 @@ class ShaderScene extends CGFscene {
 			this.testShaders[6].setUniformsValues({ timeFactor: t / 100 % 1000 });
 		if (this.selectedExampleShader == 9)
 			this.testShaders[9].setUniformsValues({ timeFactor: t / 100 % 1000 });
+		if (this.selectedExampleShader == 10)
+			this.testShaders[10].setUniformsValues({ timeFactor: t /100%1000 });
+
 }
 
 	// main display function
@@ -209,9 +220,12 @@ class ShaderScene extends CGFscene {
 		// bind additional texture to texture unit 1
 		this.texture2.bind(1);
 
+		this.waterMap.bind(2);
+		this.waterTex.bind(3);
+
 		//Uncomment following lines in case texture must have wrapping mode 'REPEAT'
-		//this.gl.texParameteri(this.gl.TEXTURE_2D, this.gl.TEXTURE_WRAP_S, this.gl.REPEAT);
-		//this.gl.texParameteri(this.gl.TEXTURE_2D, this.gl.TEXTURE_WRAP_T, this.gl.REPEAT);
+		this.gl.texParameteri(this.gl.TEXTURE_2D, this.gl.TEXTURE_WRAP_S, this.gl.REPEAT);
+		this.gl.texParameteri(this.gl.TEXTURE_2D, this.gl.TEXTURE_WRAP_T, this.gl.REPEAT);
 
 		if (this.selectedObject==0) {
 			// teapot (scaled and rotated to conform to our axis)
@@ -226,6 +240,7 @@ class ShaderScene extends CGFscene {
 			this.popMatrix();
 		}
 		else {
+
 			this.pushMatrix();
 			
 			this.scale(25, 25, 25);
