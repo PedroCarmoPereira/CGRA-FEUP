@@ -18,8 +18,8 @@ class MyLSystem extends CGFobject {
     // cria o lexico da gramática
     initGrammar(){
         this.grammar = {
-            "F": new MyRectangle(this.scene, 0.2, 1),
-            "X": new MyRectangle(this.scene, 0.5, 0.5)
+            "F": new MyBranch(this.scene),
+            "X": new MyLeaf(this.scene)
         };
     }
 
