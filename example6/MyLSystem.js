@@ -18,8 +18,8 @@ class MyLSystem extends CGFobject {
     // cria o lexico da gramática
     initGrammar(){
         this.grammar = {
-            "F": new MyBranch(this.scene),
-            "X": new MyLeaf(this.scene)
+            "F": new MyRectangle(this.scene, 0.5, 1),
+            "X": new MyRectangle(this.scene, 0.5, 1)
         };
     }
 
@@ -104,6 +104,19 @@ class MyLSystem extends CGFobject {
                     // pop
                     this.scene.popMatrix();
                     break;
+                case "\\":
+                    this.scene.rotate(this.angle, 1, 0, 0);
+                    break;
+                case "/":
+                    this.scene.rotate(-this.angle, 1, 0, 0);
+                    break;
+                case "^":
+                    this.scene.rotate(this.angle, 0, 1, 0);
+                    break;
+                case "&":
+                    this.scene.rotate(-this.angle, 0, 1, 0);
+                    break;
+
 
                 // processa primitiva definida na gramatica, se existir
                 default:

@@ -23,18 +23,18 @@ class MyScene extends CGFscene {
         //Objects connected to MyInterface
         this.axiom = "X"; //
         this.ruleF = "FF"; //
-        this.ruleX = "F[-X][X]F[-X]+FX";
-        this.angle = 60.0;
-        this.iterations = 2;
-        this.scaleFactor = 1;
-        this.lSystem = new MyLSystem(this);
+        this.ruleX = ["F[-X][X]F[-X]+X", "F[-X][X]+X", "F[+X]-X", "F[/X][X]F[\\\\X]+X", " F[\\X][X]/X", "F[/X]\\X", "F[^X][X]F[&X]^X", "F[^X]&X", "F[&X]^X"];
+        this.angle = 30.0;
+        this.iterations = 4;
+        this.scaleFactor = 0.5;
+        this.lSystem = new MyLPlant(this);
 
         this.doGenerate = function () {
             this.lSystem.generate(
                 this.axiom,
                 {
                     "F": [ this.ruleF ],
-                    "X": [ this.ruleX ]
+                    "X":  this.ruleX 
                 },
                 this.angle,
                 this.iterations,
@@ -44,12 +44,7 @@ class MyScene extends CGFscene {
 
         // do initial generation
         this.doGenerate();
-        this.axiom = "X";
-        this.ruleF = "FF";
-        this.ruleX = "F[-X][X]F[-X]+FX";
-        this.angle = 30.0;
-        this.iterations = 4;
-        this.scaleFactor = 0.5;
+        this.ruleX ="F[-X][X]F[-X]+X";
 
         //Initialize scene objects
         this.axis = new CGFaxis(this);
