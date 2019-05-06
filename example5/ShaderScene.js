@@ -73,7 +73,8 @@ class ShaderScene extends CGFscene {
 			new CGFshader(this.gl, "shaders/texture1.vert", "shaders/sepia.frag"),
 			new CGFshader(this.gl, "shaders/texture1.vert", "shaders/convolution.frag"),
 			new CGFshader(this.gl, "shaders/blueyellow.vert", "shaders/blueyellow.frag"),
-			new CGFshader(this.gl, "shaders/water.vert", "shaders/water.frag")
+			new CGFshader(this.gl, "shaders/water.vert", "shaders/water.frag"),
+			new CGFshader(this.gl, "shaders/texture1.vert", "shaders/grayscale.frag")
 
 		];
 
@@ -100,7 +101,8 @@ class ShaderScene extends CGFscene {
 			'Sepia': 7,
 			'Convolution': 8,
 			'Blue and Yellow': 9,
-			'Water': 10
+			'Water': 10,
+			'Grayscale':11,
 		};
 
 		// shader code panels references
