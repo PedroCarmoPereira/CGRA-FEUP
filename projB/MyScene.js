@@ -6,8 +6,12 @@ class MyScene extends CGFscene {
     constructor() {
         super();
     }
-    
-    
+    x = 5;
+    y = 0;
+    z = 2;
+    ang = 0;
+    temp = 0;
+
     init(application) {
         super.init(application);
         this.initCameras();
@@ -40,11 +44,31 @@ class MyScene extends CGFscene {
         if (this.gui.isKeyPressed("KeyW")) {
             text+=" W ";
             keysPressed=true;
+            this.z = this.z + (1 * Math.cos(this.ang));
+            this.x = this.x + (1 * Math.sin(this.ang));
         }
         if (this.gui.isKeyPressed("KeyS")) {
             text+=" S ";
             keysPressed=true;
+            this.z = this.z - (1 * Math.cos(this.ang));
+            this.x = this.x - (1 * Math.sin(this.ang));
         }
+        if (this.gui.isKeyPressed("KeyA")) {
+            text+=" S ";
+            keysPressed=true;
+            this.ang += (Math.PI * 10) / 180;;
+        }
+        if (this.gui.isKeyPressed("KeyD")) {
+            text+=" S ";
+            keysPressed=true;
+            this.ang -= (Math.PI * 10) / 180;
+        }
+        if (this.gui.isKeyPressed("KeyR")) {
+            text+=" S ";
+            keysPressed=true;
+            this.x = 0;
+            this.z = 0;
+                }
         if (keysPressed)
             console.log(text);
     }
@@ -66,6 +90,20 @@ class MyScene extends CGFscene {
     }
     update(t){
         this.checkKeys();
+        if (this.temp == 0){
+            this.y = this.y + 0.1;
+            if(this.y >= 1){
+                this.temp = 1;
+            }
+        }
+        if (this.temp == 1){
+            this.y = this.y - 0.1;
+            if(this.y <= -1){
+                this.temp = 0;
+            }
+        }
+
+        this.bird.wingAng = Math.sin(t/1000*Math.PI);
     }
 
     display() {
@@ -89,19 +127,21 @@ class MyScene extends CGFscene {
         this.pushMatrix();
         this.rotate(-0.5*Math.PI, 1, 0, 0);
         this.scale(60, 60, 1);
-        this.plane.display();
+         this.plane.display();
         this.popMatrix();
 
         this.pushMatrix();
         this.rotate(Math.PI, 0, 1, 0);
-        this.house.display();
+         this.house.display();
         this.popMatrix();
         
         this.pushMatrix();
-        this.translate(0, 5, 2);
+        this.translate(this.x, 5 + this.y , this.z);
+        this.rotate(this.ang, 0, 1, 0);
         this.scale(0.5, 0.5, 0.5);
-        this.bird.display();
+         this.bird.display();
         this.popMatrix();
+
         // ---- END Primitive drawing section
     }
 }
