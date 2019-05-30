@@ -33,6 +33,7 @@ class MyScene extends CGFscene {
         this.house = new MyHouse(this, 'images/wall.png', 'images/column.jpg', 'images/roof.png', 'images/door.jpeg')
         this.bird = new MyBird(this);
         this.wings = new MyWings(this);
+        this.skybox = new MyCubeMap(this, "Day");
         
         //Objects connected to MyInterface
 
@@ -40,7 +41,7 @@ class MyScene extends CGFscene {
         this.terrainMap = new CGFtexture(this, "images/heightmap.jpg");
         this.terrainAlt = new CGFtexture(this, "images/altimetry.png");
 
-        this.terrainShader = new CGFshader(this.gl, "terrain.vert", "terrain.frag");
+        this.terrainShader = new CGFshader(this.gl, "shaders/terrain.vert", "shaders/terrain.frag");
 
         this.terrainShader.setUniformsValues({ uSamplerTerrainMap: 1 });
         this.terrainShader.setUniformsValues({ uSamplerTerrainTex: 2 });
@@ -138,7 +139,7 @@ class MyScene extends CGFscene {
         this.terrainAlt.bind(3);
         
         // ---- BEGIN Primitive drawing section
-        
+        this.skybox.display();
         this.pushMatrix();
         this.rotate(Math.PI, 0, 1, 0);
         this.house.display();
