@@ -35,11 +35,14 @@ class MyScene extends CGFscene {
         this.wings = new MyWings(this);
         this.skybox = new MyCubeMap(this, "Day");
         this.plant = new MyLPlant(this);
+
+        this.scaleFactor = 0.5;
+        this.speedFactor = 1.0;
         
         //Objects connected to MyInterface
 
         this.terrainTex = new CGFtexture(this, "images/terrain.jpg");
-        this.terrainMap = new CGFtexture(this, "images/heightmap.jpg");
+        this.terrainMap = new CGFtexture(this, "images/heightmap2.jpg");
         this.terrainAlt = new CGFtexture(this, "images/altimetry.png");
 
         this.terrainShader = new CGFshader(this.gl, "shaders/terrain.vert", "shaders/terrain.frag");
@@ -56,24 +59,24 @@ class MyScene extends CGFscene {
         if (this.gui.isKeyPressed("KeyW")) {
             text+=" W ";
             keysPressed=true;
-            this.z = this.z + (1 * Math.cos(this.ang));
-            this.x = this.x + (1 * Math.sin(this.ang));
+            this.z = this.z + (this.speedFactor * Math.cos(this.ang));
+            this.x = this.x + (this.speedFactor * Math.sin(this.ang));
         }
         if (this.gui.isKeyPressed("KeyS")) {
             text+=" S ";
             keysPressed=true;
-            this.z = this.z - (1 * Math.cos(this.ang));
-            this.x = this.x - (1 * Math.sin(this.ang));
+            this.z = this.z - (this.speedFactor * Math.cos(this.ang));
+            this.x = this.x - (this.speedFactor * Math.sin(this.ang));
         }
         if (this.gui.isKeyPressed("KeyA")) {
             text+=" S ";
             keysPressed=true;
-            this.ang += (Math.PI * 10) / 180;;
+            this.ang += (Math.PI * 10) / 180 * this.speedFactor;;
         }
         if (this.gui.isKeyPressed("KeyD")) {
             text+=" S ";
             keysPressed=true;
-            this.ang -= (Math.PI * 10) / 180;
+            this.ang -= (Math.PI * 10) / 180 * this.speedFactor;
         }
         if (this.gui.isKeyPressed("KeyR")) {
             text+=" S ";
@@ -138,7 +141,7 @@ class MyScene extends CGFscene {
             }
         }
 
-        this.bird.wingAng = Math.sin(t/1000*Math.PI);
+        this.bird.wingAng = Math.sin((t*this.speedFactor)/1000*Math.PI);
     }
 
     display() {
@@ -171,14 +174,14 @@ class MyScene extends CGFscene {
 
         this.skybox.display();
         this.pushMatrix();
-        this.rotate(Math.PI, 0, 1, 0);
+        this.translate(0, 4 , 10);
         this.house.display();
         this.popMatrix();
         
         this.pushMatrix();
-        this.translate(this.x, 5 + this.y , this.z);
+        this.translate(this.x, 9 + this.y , this.z);
         this.rotate(this.ang, 0, 1, 0);
-        this.scale(0.5, 0.5, 0.5);
+        this.scale(this.scaleFactor, this.scaleFactor, this.scaleFactor);
         this.bird.display();
         this.popMatrix();
         
