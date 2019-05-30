@@ -119,8 +119,8 @@ class MyCubeMap extends MyUnitCubeQuad {
 
     display(){
         this.scene.pushMatrix();
-        this.scene.translate(0, 99, 0);
-        this.scene.scale(200, 200, 200);
+        this.scene.translate(0, 33, 0);
+        this.scene.scale(75, 75, 75);
         this.insideOutDisplay();
         this.scene.popMatrix();
     }
