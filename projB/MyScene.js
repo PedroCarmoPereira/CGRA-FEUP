@@ -35,6 +35,16 @@ class MyScene extends CGFscene {
         this.wings = new MyWings(this);
         
         //Objects connected to MyInterface
+
+        this.terrainTex = new CGFtexture(this, "images/terrain.jpg");
+        this.terrainMap = new CGFtexture(this, "images/heightmap.jpg");
+        this.terrainAlt = new CGFtexture(this, "images/altimetry.png");
+
+        this.terrainShader = new CGFshader(this.gl, "terrain.vert", "terrain.frag");
+
+        this.terrainShader.setUniformsValues({ uSamplerTerrainMap: 1 });
+        this.terrainShader.setUniformsValues({ uSamplerTerrainTex: 2 });
+        this.terrainShader.setUniformsValues({ uSamplerTerrainAlt: 3 });
     }
 
     checkKeys() {
@@ -122,25 +132,33 @@ class MyScene extends CGFscene {
 
         //Apply default appearance
         this.setDefaultAppearance();
-
+        
+        this.terrainMap.bind(1);
+        this.terrainTex.bind(2);
+        this.terrainAlt.bind(3);
+        
         // ---- BEGIN Primitive drawing section
-        this.pushMatrix();
-        this.rotate(-0.5*Math.PI, 1, 0, 0);
-        this.scale(60, 60, 1);
-         this.plane.display();
-        this.popMatrix();
-
+        
         this.pushMatrix();
         this.rotate(Math.PI, 0, 1, 0);
-         this.house.display();
+        this.house.display();
         this.popMatrix();
         
         this.pushMatrix();
         this.translate(this.x, 5 + this.y , this.z);
         this.rotate(this.ang, 0, 1, 0);
         this.scale(0.5, 0.5, 0.5);
-         this.bird.display();
+        this.bird.display();
         this.popMatrix();
+        
+        this.pushMatrix();
+        this.rotate(-0.5*Math.PI, 1, 0, 0);
+        this.scale(60, 60, 10);
+        this.setActiveShader(this.terrainShader);
+        this.plane.display();
+        this.popMatrix();
+
+        this.setActiveShader(this.defaultShader);
 
         // ---- END Primitive drawing section
     }
