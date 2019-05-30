@@ -37,7 +37,7 @@ class MyScene extends CGFscene {
         //Objects connected to MyInterface
 
         this.terrainTex = new CGFtexture(this, "images/terrain.jpg");
-        this.terrainMap = new CGFtexture(this, "images/heightmap.jpg");
+        this.terrainMap = new CGFtexture(this, "images/heightmap2.jpg");
         this.terrainAlt = new CGFtexture(this, "images/altimetry.png");
 
         this.terrainShader = new CGFshader(this.gl, "terrain.vert", "terrain.frag");
@@ -140,12 +140,12 @@ class MyScene extends CGFscene {
         // ---- BEGIN Primitive drawing section
         
         this.pushMatrix();
-        this.rotate(Math.PI, 0, 1, 0);
+        this.translate(0, 4 , 10);
         this.house.display();
         this.popMatrix();
         
         this.pushMatrix();
-        this.translate(this.x, 5 + this.y , this.z);
+        this.translate(this.x, 9 + this.y , this.z);
         this.rotate(this.ang, 0, 1, 0);
         this.scale(0.5, 0.5, 0.5);
         this.bird.display();
