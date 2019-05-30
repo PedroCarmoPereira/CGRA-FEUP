@@ -21,6 +21,7 @@ serialInclude(['../lib/CGF.js',
                 'MyBranch.js',
                 'MyRectangle.js',
                 'MyLPlant.js', 
+                'MyLPlantGroup.js',
 
 main=function()
 {

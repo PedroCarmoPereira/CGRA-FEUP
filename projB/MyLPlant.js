@@ -8,7 +8,7 @@ class MyLPlant extends MyLSystem {
         this.iterations = 4;
         this.initGrammar();
         this.productions = {"F": [ this.ruleF ],"X":  this.ruleX };
-        this.scale = 0.1;
+        this.scale = 0.25;
         this.iterate();
     }
         
