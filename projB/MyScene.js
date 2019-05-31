@@ -36,10 +36,11 @@ class MyScene extends CGFscene {
         this.skybox = new MyCubeMap(this, "Day");
         this.plants = [];
         this.plantIndexes = [];
-        for (let i = 0; i < 10; i++) this.plants.push(new MyLPlantGroup(this));
+        for (let i = 0; i < 3; i++) this.plants.push(new MyLPlantGroup(this));
         this.scaleFactor = 0.5;
         this.speedFactor = 1.0;
         
+        this.lightning = new MyLightning(this);
         //Objects connected to MyInterface
 
         this.terrainTex = new CGFtexture(this, "images/terrain.jpg");
@@ -153,44 +154,23 @@ class MyScene extends CGFscene {
         this.popMatrix();
 
         this.pushMatrix();
-        this.translate(6, 4, 4);
-        this.plants[2].display();
-        this.popMatrix();
-
-        this.pushMatrix();
         this.translate(6, 4, 6);
-        this.plants[3].display();
+        this.plants[0].display();
         this.popMatrix();
 
         this.pushMatrix();
         this.translate(12, 4, 6);
-        this.plants[4].display();
+        this.plants[1].display();
         this.popMatrix();
-
-        this.pushMatrix();
-        this.translate(10, 4, -2);
-        this.plants[5].display();
-        this.plants[6].display();
-        this.popMatrix();
-
-        this.pushMatrix();
-        this.translate(10, 4, -3);
-        this.plants[7].display();
-        this.popMatrix();
-
-        this.pushMatrix();
-        this.translate(10, 4, -4);
-        this.plants[8].display();
-        this.popMatrix();
-
+        
         this.pushMatrix();
         this.translate(10, 4, -5);
-        this.plants[9].display();
+        this.plants[0].display();
         this.popMatrix();
 
         this.pushMatrix();
         this.translate(10, 4, -10);
-        this.plants[0].display();
+        this.plants[1].display();
         this.popMatrix();
 
 
@@ -215,7 +195,8 @@ class MyScene extends CGFscene {
         this.terrainMap.bind(1);
         this.terrainTex.bind(2);
         this.terrainAlt.bind(3);
-        
+
+        this.lightning.display();
         // ---- BEGIN Primitive drawing section
         this.skybox.display();
         this.displayForest();
