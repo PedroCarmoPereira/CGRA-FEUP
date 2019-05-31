@@ -5,12 +5,14 @@
 class MyScene extends CGFscene {
     constructor() {
         super();
+        this.strike = false;
     }
     x = 5;
     y = 0;
     z = 2;
     ang = 0;
     temp = 0;
+
 
     init(application) {
         super.init(application);
@@ -52,6 +54,7 @@ class MyScene extends CGFscene {
         this.terrainShader.setUniformsValues({ uSamplerTerrainMap: 1 });
         this.terrainShader.setUniformsValues({ uSamplerTerrainTex: 2 });
         this.terrainShader.setUniformsValues({ uSamplerTerrainAlt: 3 });
+        this.setUpdatePeriod(50); //Runs update() every 50 ms
     }
 
     checkKeys() {
@@ -86,6 +89,11 @@ class MyScene extends CGFscene {
             this.x = 0;
             this.z = 0;
                 }
+
+        if(this.gui.isKeyPressed("KeyL")){
+            this.strike = true;
+            keysPressed=true;
+        }
         if (keysPressed)
             console.log(text);
     }
@@ -142,6 +150,17 @@ class MyScene extends CGFscene {
                 this.temp = 0;
             }
         }
+
+        if(this.strike && !this.strikeStart) {
+            console.log("STRIKE");
+            this.strikeStart = t;
+            console.log("Start: " + this.strikeStart);
+        }
+        if (t - this.strikeStart >= 1000){
+            this.strike = false;
+            this.strikeStart = undefined;
+            console.log("FIZZLE");
+        } 
 
         this.bird.wingAng = Math.sin((t*this.speedFactor)/1000*Math.PI);
     }
