@@ -7,6 +7,8 @@ class MyQuadRectangle extends MyQuad {
         this.scene.pushMatrix();
         this.scene.scale(0.2, 1, 1);
         super.display();
+        this.scene.rotate(Math.PI, 0, 1, 0);
+        super.display();
         this.scene.popMatrix();
     }
 }

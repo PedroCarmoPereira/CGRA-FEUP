@@ -150,18 +150,13 @@ class MyScene extends CGFscene {
                 this.temp = 0;
             }
         }
-
-        if(this.strike && !this.strikeStart) {
-            console.log("STRIKE");
-            this.strikeStart = t;
-            console.log("Start: " + this.strikeStart);
+        if(this.strike && !this.lightning.strikeStart) {
+            console.log("START");
+            this.endAnim = true;
+            this.lightning.startAnimation(t);
         }
-        if (t - this.strikeStart >= 1000){
-            this.strike = false;
-            this.strikeStart = undefined;
-            console.log("FIZZLE");
-        } 
-
+        
+        if(this.strike) this.lightning.update(t);
         this.bird.wingAng = Math.sin((t*this.speedFactor)/1000*Math.PI);
     }
 
@@ -215,7 +210,6 @@ class MyScene extends CGFscene {
         this.terrainTex.bind(2);
         this.terrainAlt.bind(3);
 
-        this.lightning.display();
         // ---- BEGIN Primitive drawing section
         this.skybox.display();
         this.displayForest();
@@ -240,6 +234,12 @@ class MyScene extends CGFscene {
         this.popMatrix();
 
         this.setActiveShader(this.defaultShader);
+
+        this.pushMatrix();
+        this.translate(0, 12, 0);
+        this.rotate(Math.PI, 0, 0, 1);
+        this.lightning.display();
+        this.popMatrix();
 
         // ---- END Primitive drawing section
     }
