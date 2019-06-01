@@ -8,43 +8,56 @@ class MyBird extends CGFobject{
     wingAng = 0;
     
     initObjects(){
-        this.head = new MyUnitCubeQuad(this.scene);
+        this.head = new MyHead(this.scene);
         this.body = new MyUnitCubeQuad(this.scene);
         this.wing1 = new MyWings(this.scene);
         this.wing2 = new MyWings(this.scene);
-        this.beak = new MyPyramid(this.scene, 4, 4);
+        this.tail = new MyTail(this.scene);
+
+        var color = this.scene.hexToRgbA('#FFFFFF');
+        this.white = new CGFappearance(this.scene);
+        this.white.setAmbient(color[0], color[1], color[2], 1.0);
+        this.white.setDiffuse(color[0], color[1], color[2], 1.0);
+        this.white.setSpecular(color[0], color[1], color[2], 1.0);
+        this.white.setShininess(10.0);
     };
 
     display(){
 
         this.scene.pushMatrix();
-        this.scene.translate(0, 3, 0);
+        this.scene.translate(0, 2.9, 0.1);
+        this.scene.scale(0.25, 0.25, 0.25);
+        this.scene.rotate(-Math.PI/2, 0, 2, 0);
         this.head.display();
         this.scene.popMatrix();
 
         this.scene.pushMatrix();
-        this.scene.translate(0, 2, -0.5);
-        this.head.display();
+        this.scene.translate(0, 2, -0.75);
+        this.scene.rotate(-Math.PI/4, 1, 0, 0);
+        this.scene.scale(1, 0.75, 1.75);
+        this.body.display();
         this.scene.popMatrix();
 
         this.scene.pushMatrix();
-        this.scene.translate(0.5, 2, -1);
+        this.scene.translate(0.5, 2.25, -1);
+        this.scene.scale(1.75, 3, 1.75);
         this.scene.rotate(this.wingAng, 0, 0, 1);
         this.wing1.display();
         this.scene.popMatrix();
 
         this.scene.pushMatrix();
-        this.scene.translate(-0.5, 2, -0.5);
+        this.scene.translate(-0.5, 2.25, -0.1);
+        this.scene.scale(1.75, 3, 1.75);
         this.scene.rotate(Math.PI, 0, 1, 0);
         this.scene.rotate(this.wingAng, 0, 0, 1);
         this.wing2.display();
-        this.scene.popMatrix();
+        this.scene.popMatrix();  
         
         this.scene.pushMatrix();
-        this.scene.translate(0, 3, 0.5);
-        this.scene.rotate(Math.PI/2, 1, 0, 0);
-        this.scene.scale(0.25, 0.25, 0.25)
-        this.beak.display();
+        this.scene.translate(0, 1, -2.25);
+        this.scene.rotate(Math.PI/4, 1, 0, 0);
+        this.scene.scale(0.5, 0.6, 0.5);
+        this.tail.display();
         this.scene.popMatrix();
     }
 }

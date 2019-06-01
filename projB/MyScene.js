@@ -20,21 +20,20 @@ class MyScene extends CGFscene {
         this.initLights();
         
         //Background color
-        this.gl.clearColor(0.0, 0.0, 0.0, 1.0);
+        this.gl.clearColor(1, 1, 1, 1.0);
         
         this.gl.clearDepth(100.0);
         this.gl.enable(this.gl.DEPTH_TEST);
         this.gl.enable(this.gl.CULL_FACE);
         this.gl.depthFunc(this.gl.LEQUAL);
         this.enableTextures(true);
-        this.setUpdatePeriod(50);
         
         //Initialize scene objects
         this.axis = new CGFaxis(this);
         this.plane = new Plane(this, 32);
         this.house = new MyHouse(this, 'images/wall.png', 'images/column.jpg', 'images/roof.png', 'images/door.jpeg')
         this.bird = new MyBird(this);
-        this.wings = new MyWings(this);
+        this.tail = new MyTail(this);
         this.skybox = new MyCubeMap(this, "Night");
         this.plants = [];
         this.plantIndexes = [];
@@ -42,6 +41,7 @@ class MyScene extends CGFscene {
         this.scaleFactor = 0.5;
         this.speedFactor = 1.0;
         
+        this.head = new MyHead(this);
         this.lightning = new MyLightning(this);
         //Objects connected to MyInterface
 
@@ -211,6 +211,7 @@ class MyScene extends CGFscene {
         this.terrainAlt.bind(3);
 
         // ---- BEGIN Primitive drawing section
+        
         this.skybox.display();
         this.displayForest();
 
@@ -218,14 +219,7 @@ class MyScene extends CGFscene {
         this.translate(0, 4 , 10);
         this.house.display();
         this.popMatrix();
-        
-        this.pushMatrix();
-        this.translate(this.x, 9 + this.y , this.z);
-        this.rotate(this.ang, 0, 1, 0);
-        this.scale(this.scaleFactor, this.scaleFactor, this.scaleFactor);
-        this.bird.display();
-        this.popMatrix();
-        
+            
         this.pushMatrix();
         this.rotate(-0.5*Math.PI, 1, 0, 0);
         this.scale(60, 60, 10);
@@ -234,10 +228,17 @@ class MyScene extends CGFscene {
         this.popMatrix();
 
         this.setActiveShader(this.defaultShader);
+        
+        this.pushMatrix();
+        this.translate(this.x, 9 + this.y , this.z);
+        this.rotate(this.ang, 0, 1, 0);
+        this.scale(this.scaleFactor, this.scaleFactor, this.scaleFactor);
+        this.bird.display();
+        this.popMatrix();
 
         if(this.strike){
             this.pushMatrix();
-            this.translate(0, 12, 0);
+            this.translate(0, 15, 0);
             this.rotate(Math.PI, 0, 0, 1);
             this.lightning.display();
             this.popMatrix();
