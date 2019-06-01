@@ -35,7 +35,7 @@ class MyScene extends CGFscene {
         this.house = new MyHouse(this, 'images/wall.png', 'images/column.jpg', 'images/roof.png', 'images/door.jpeg')
         this.bird = new MyBird(this);
         this.wings = new MyWings(this);
-        this.skybox = new MyCubeMap(this, "Day");
+        this.skybox = new MyCubeMap(this, "Night");
         this.plants = [];
         this.plantIndexes = [];
         for (let i = 0; i < 3; i++) this.plants.push(new MyLPlantGroup(this));
@@ -235,11 +235,13 @@ class MyScene extends CGFscene {
 
         this.setActiveShader(this.defaultShader);
 
-        this.pushMatrix();
-        this.translate(0, 12, 0);
-        this.rotate(Math.PI, 0, 0, 1);
-        this.lightning.display();
-        this.popMatrix();
+        if(this.strike){
+            this.pushMatrix();
+            this.translate(0, 12, 0);
+            this.rotate(Math.PI, 0, 0, 1);
+            this.lightning.display();
+            this.popMatrix();
+        }
 
         // ---- END Primitive drawing section
     }

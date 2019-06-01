@@ -9,6 +9,12 @@ class MyLightning extends MyLSystem{
         this.iterations = 3;
         this.scale = 0.5;
         this.productions = {"F": [ this.ruleF ],"X":  this.ruleX };
+        var color = this.scene.hexToRgbA('#FFFFFF');
+        this.material = new CGFappearance(this.scene);
+        this.material.setAmbient(color[0], color[1], color[2], 1.0);
+        this.material.setDiffuse(color[0], color[1], color[2], 1.0);
+        this.material.setSpecular(color[0], color[1], color[2], 1.0);
+        this.material.setShininess(10.0);
         this.initGrammar();
     }
 
@@ -47,11 +53,12 @@ class MyLightning extends MyLSystem{
     display(){
         this.scene.pushMatrix();
         this.scene.scale(this.scale, this.scale, this.scale);
+        this.material.apply();
 
         var i;
 
         // percorre a cadeia de caracteres
-        for (i=0; i<this.axiom.length && i <= Math.floor(this.depth) && this.scene.strike; ++i){
+        for (i=0; i<this.axiom.length && i <= Math.floor(this.depth); ++i){
 
             // verifica se sao caracteres especiais
             switch(this.axiom[i]){
