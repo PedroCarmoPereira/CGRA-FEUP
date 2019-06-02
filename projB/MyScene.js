@@ -13,6 +13,10 @@ class MyScene extends CGFscene {
     ang = 0;
     temp = 0;
     speed = 0;
+    catch = false;
+    branch_num;
+    pos = [5, 4.2, -15, 10, 4.2, -12, -5, 4.2, -10, -12, 4.2, -4]; //x, y, z... posição dos branches
+    check = [1,1,1,1,0,0,0,0]; //verifica se faz display do branch
 
 
     init(application) {
@@ -36,6 +40,8 @@ class MyScene extends CGFscene {
         this.bird = new MyBird(this);
         this.tail = new MyTail(this);
         this.skybox = new MyCubeMap(this, "Night");
+        this.branch = [];
+        for (let i = 0; i < 8; i++) this.branch.push(new MyTreeBranch(this));
         this.nest = new MyNest(this);
         this.plants = [];
         this.plantIndexes = [];
@@ -85,6 +91,7 @@ class MyScene extends CGFscene {
             text+=" S ";
             keysPressed=true;
             this.x = 0;
+            this.y = 0;
             this.z = 0;
             this.speed = 0;
             this.ang = 0;
@@ -97,6 +104,7 @@ class MyScene extends CGFscene {
 
         if(this.gui.isKeyPressed("KeyP")){
             keysPressed=true;
+            this.catch = true;
         }
 
         if (keysPressed)
@@ -149,9 +157,30 @@ class MyScene extends CGFscene {
         return ret;
     }
 
+    grabBranch(){
+        for(let i = 0; i < 4; i++){
+            if(this.x < (this.pos[3*i] + 3) && this.x > (this.pos[3*i] - 3) && this.z < (this.pos[3*i+2] + 3) && this.z > (this.pos[3*i+2] - 3)){
+                this.bird.grab(true);
+                this.check[i] = 0;
+                this.branch_num = i;
+                this.catch = true;
+            }
+        }  
+    }
+
+    dropBranch(){
+        if(this.x < (4.5 + 3) && this.x > (4.5 - 3) && this.z < (7 + 3) && this.z > (7 - 3)){
+            this.bird.grab(false);
+            if(this.check)
+            this.check[this.branch_num + 4] = 1;
+            console.log("sada");
+            this.catch = false;
+        }
+    }
+
     update(t){
         this.checkKeys();
-        if (this.temp == 0){
+       /* if (this.temp == 0){
             this.y = this.y + 0.1;
             if(this.y >= 1){
                 this.temp = 1;
@@ -162,7 +191,7 @@ class MyScene extends CGFscene {
             if(this.y <= -1){
                 this.temp = 0;
             }
-        }
+        }*/
 
         
         if(this.strike && !this.lightning.strikeStart) {
@@ -173,10 +202,96 @@ class MyScene extends CGFscene {
         
         if(this.strike) this.lightning.update(t);
 
+        if(this.catch){
+            this.y -= 0.5;
+        }
+
+        if(!this.catch && (9+this.y) < 9){
+            this.y +=0.5;
+        }
+
+        if((9+this.y) < 4 && this.catch){
+            this.catch = false;
+        }
+            
+
         this.bird.wingAng = Math.sin((t*this.speedFactor)/1000*Math.PI);
 
-        this.z = this.z + (this.speed * Math.cos(this.ang));
-        this.x = this.x + (this.speed * Math.sin(this.ang));
+        this.z = this.z + (this.speed * Math.cos(this.ang)) * this.speedFactor;
+        this.x = this.x + (this.speed * Math.sin(this.ang)) * this.speedFactor;
+
+        if((9 + this.y) < 5 && (9 + this.y) > 3 && !this.catch){
+            this.grabBranch();
+        }
+
+        if((9 + this.y) < 5 && (9 + this.y) > 3 && this.catch){
+            this.dropBranch();
+        }
+    }
+
+    displayBranches(){
+        if(this.check[0]){
+            this.pushMatrix();
+            this.translate(this.pos[0], this.pos[1], this.pos[2]);  
+            this.branch[0].display();
+            this.popMatrix();
+        }
+
+        if(this.check[1]){
+            this.pushMatrix();
+            this.translate(this.pos[3], this.pos[4], this.pos[5]);  
+            this.branch[1].display();
+            this.popMatrix();
+        }
+
+        if(this.check[2]){
+            this.pushMatrix();
+            this.translate(this.pos[6], this.pos[7], this.pos[8]);  
+            this.branch[2].display();
+            this.popMatrix();
+        }
+
+        if(this.check[3]){
+            this.pushMatrix();
+            this.translate(this.pos[9], this.pos[10], this.pos[11]);  
+            this.branch[3].display();
+            this.popMatrix();
+        }
+
+        if(this.check[4]){
+            this.pushMatrix();
+            this.translate(4.5, 4.2, 7);
+            this.rotate(-Math.PI/4, 1, 0, 0);
+            this.branch[4].display();
+            this.popMatrix();
+        }
+
+        if(this.check[5]){
+            this.pushMatrix();
+            this.translate(4.5, 4.2, 7);
+            this.rotate(Math.PI/2, 0, 1, 0);
+            this.rotate(-Math.PI/4, 1, 0, 0);
+            this.branch[5].display();
+            this.popMatrix();
+        }
+
+        if(this.check[6]){
+            this.pushMatrix();
+            this.translate(4.5, 4.2, 7);
+            this.rotate(Math.PI, 0, 1, 0);
+            this.rotate(-Math.PI/4, 1, 0, 0);
+            this.branch[6].display();
+            this.popMatrix();
+        }
+
+        if(this.check[7]){
+            this.pushMatrix();
+            this.translate(4.5, 4.2, 7);
+            this.rotate(-Math.PI/2, 0, 1, 0);
+            this.rotate(-Math.PI/4, 1, 0, 0);
+            this.branch[7].display();
+            this.popMatrix();
+        }        
     }
 
     displayForest(){
@@ -232,6 +347,7 @@ class MyScene extends CGFscene {
         // ---- BEGIN Primitive drawing section
         
         this.skybox.display();
+        this.displayBranches();
         this.displayForest();
 
         this.pushMatrix();

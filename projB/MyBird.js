@@ -6,6 +6,7 @@ class MyBird extends CGFobject{
 
     wingMov = false; //FALSE = DOWN, TRUE = UP
     wingAng = 0;
+    br = false;
     
     initObjects(){
         this.head = new MyHead(this.scene);
@@ -14,6 +15,7 @@ class MyBird extends CGFobject{
         this.wing1 = new MyWings(this.scene);
         this.wing2 = new MyWings(this.scene);
         this.tail = new MyTail(this.scene);
+        this.branch = new MyTreeBranch(this.scene);
 
         var color = this.scene.hexToRgbA('#FFFFFF');
         this.white = new CGFappearance(this.scene);
@@ -22,6 +24,10 @@ class MyBird extends CGFobject{
         this.white.setSpecular(color[0], color[1], color[2], 1.0);
         this.white.setShininess(10.0);
     };
+
+    grab(check){
+        this.br = check;
+    }
 
     display(){
 
@@ -68,5 +74,13 @@ class MyBird extends CGFobject{
         this.scene.rotate(Math.PI/3 , 1, 0, 0);
         this.belly.display();
         this.scene.popMatrix();
+
+        if(this.br){
+            this.scene.pushMatrix();
+            this.scene.translate(-0.75, 3, 1);
+            this.scene.rotate(Math.PI/2, 0, 1, 0);
+            this.branch.display();
+            this.scene.popMatrix();
+        }
     }
 }
