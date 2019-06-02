@@ -10,6 +10,7 @@ class MyBird extends CGFobject{
     initObjects(){
         this.head = new MyHead(this.scene);
         this.body = new MyUnitCubeQuad(this.scene);
+        this.belly = new MyQuad(this.scene);
         this.wing1 = new MyWings(this.scene);
         this.wing2 = new MyWings(this.scene);
         this.tail = new MyTail(this.scene);
@@ -58,6 +59,14 @@ class MyBird extends CGFobject{
         this.scene.rotate(Math.PI/4, 1, 0, 0);
         this.scene.scale(0.5, 0.6, 0.5);
         this.tail.display();
+        this.scene.popMatrix();
+
+        this.white.apply();
+        this.scene.pushMatrix();
+        this.scene.translate(0, 2, -0.2);
+        this.scene.scale(0.8, 1.4, 0.8);
+        this.scene.rotate(Math.PI/3 , 1, 0, 0);
+        this.belly.display();
         this.scene.popMatrix();
     }
 }
