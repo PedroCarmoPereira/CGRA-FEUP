@@ -41,8 +41,6 @@ class MyScene extends CGFscene {
         for (let i = 0; i < 3; i++) this.plants.push(new MyLPlantGroup(this));
         this.scaleFactor = 0.5;
         this.speedFactor = 1.0;
-        
-        this.head = new MyHead(this);
         this.lightning = new MyLightning(this);
         //Objects connected to MyInterface
 
@@ -244,6 +242,7 @@ class MyScene extends CGFscene {
             this.lightning.display();
             this.popMatrix();
         }
+        
         this.pushMatrix();
         this.translate(0, 8, 10);
         this.nest.display();
