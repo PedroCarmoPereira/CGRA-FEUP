@@ -173,7 +173,6 @@ class MyScene extends CGFscene {
             this.bird.grab(false);
             if(this.check)
             this.check[this.branch_num + 4] = 1;
-            console.log("sada");
             this.catch = false;
         }
     }
