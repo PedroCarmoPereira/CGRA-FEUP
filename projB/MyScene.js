@@ -12,6 +12,7 @@ class MyScene extends CGFscene {
     z = 2;
     ang = 0;
     temp = 0;
+    speed = 0;
 
 
     init(application) {
@@ -63,38 +64,51 @@ class MyScene extends CGFscene {
         if (this.gui.isKeyPressed("KeyW")) {
             text+=" W ";
             keysPressed=true;
-            this.z = this.z + (this.speedFactor * Math.cos(this.ang));
-            this.x = this.x + (this.speedFactor * Math.sin(this.ang));
+            this.accelerate(0.2);
         }
         if (this.gui.isKeyPressed("KeyS")) {
             text+=" S ";
             keysPressed=true;
-            this.z = this.z - (this.speedFactor * Math.cos(this.ang));
-            this.x = this.x - (this.speedFactor * Math.sin(this.ang));
+            this.accelerate(-0.2);
         }
         if (this.gui.isKeyPressed("KeyA")) {
             text+=" S ";
             keysPressed=true;
-            this.ang += (Math.PI * 10) / 180 * this.speedFactor;;
+            this.turn((Math.PI * 10) / 180);
         }
         if (this.gui.isKeyPressed("KeyD")) {
             text+=" S ";
             keysPressed=true;
-            this.ang -= (Math.PI * 10) / 180 * this.speedFactor;
+            this.turn(-(Math.PI * 10) / 180);
         }
         if (this.gui.isKeyPressed("KeyR")) {
             text+=" S ";
             keysPressed=true;
             this.x = 0;
             this.z = 0;
-                }
+            this.speed = 0;
+            this.ang = 0;
+        }
 
         if(this.gui.isKeyPressed("KeyL")){
             this.strike = true;
             keysPressed=true;
         }
+
+        if(this.gui.isKeyPressed("KeyP")){
+            keysPressed=true;
+        }
+
         if (keysPressed)
             console.log(text);
+    }
+
+    accelerate(speed){
+        this.speed += speed * this.speedFactor;
+    }
+
+    turn(alpha){
+        this.ang += alpha * this.speedFactor;
     }
 
     initLights() {
@@ -149,6 +163,8 @@ class MyScene extends CGFscene {
                 this.temp = 0;
             }
         }
+
+        
         if(this.strike && !this.lightning.strikeStart) {
             console.log("START");
             this.endAnim = true;
@@ -156,7 +172,11 @@ class MyScene extends CGFscene {
         }
         
         if(this.strike) this.lightning.update(t);
+
         this.bird.wingAng = Math.sin((t*this.speedFactor)/1000*Math.PI);
+
+        this.z = this.z + (this.speed * Math.cos(this.ang));
+        this.x = this.x + (this.speed * Math.sin(this.ang));
     }
 
     displayForest(){
@@ -234,6 +254,11 @@ class MyScene extends CGFscene {
         this.scale(this.scaleFactor, this.scaleFactor, this.scaleFactor);
         this.bird.display();
         this.popMatrix();
+       
+        this.pushMatrix();
+        this.translate(4.5, 4.2, 7);
+        this.nest.display();
+        this.popMatrix();
 
         if(this.strike){
             this.pushMatrix();
@@ -243,10 +268,6 @@ class MyScene extends CGFscene {
             this.popMatrix();
         }
         
-        this.pushMatrix();
-        this.translate(0, 8, 10);
-        this.nest.display();
-        this.popMatrix();
         // ---- END Primitive drawing section
     }
 }
