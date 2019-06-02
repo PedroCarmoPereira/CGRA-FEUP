@@ -14,7 +14,8 @@ class MyScene extends CGFscene {
     temp = 0;
     speed = 0;
     catch = false;
-    branch_num;
+    mov = true;
+    branch_num = -1;
     pos = [5, 4.2, -15, 10, 4.2, -12, -5, 4.2, -10, -12, 4.2, -4]; //x, y, z... posição dos branches
     check = [1,1,1,1,0,0,0,0]; //verifica se faz display do branch
 
@@ -104,7 +105,9 @@ class MyScene extends CGFscene {
 
         if(this.gui.isKeyPressed("KeyP")){
             keysPressed=true;
+            this.y = 0;
             this.catch = true;
+            this.mov = false;
         }
 
         if (keysPressed)
@@ -112,7 +115,8 @@ class MyScene extends CGFscene {
     }
 
     accelerate(speed){
-        this.speed += speed * this.speedFactor;
+        if(this.speed < 3)
+            this.speed += speed * this.speedFactor;
     }
 
     turn(alpha){
@@ -157,40 +161,45 @@ class MyScene extends CGFscene {
         return ret;
     }
 
-    grabBranch(){
+    grabBranch(){ 
         for(let i = 0; i < 4; i++){
             if(this.x < (this.pos[3*i] + 3) && this.x > (this.pos[3*i] - 3) && this.z < (this.pos[3*i+2] + 3) && this.z > (this.pos[3*i+2] - 3)){
-                this.bird.grab(true);
-                this.check[i] = 0;
-                this.branch_num = i;
-                this.catch = true;
+                if(this.check[i]){
+                    this.bird.grab(true);
+                    this.check[i] = 0;
+                    this.branch_num = i;
+                    this.catch = true;
+                }
             }
         }  
     }
 
     dropBranch(){
+       if(this.branch_num != -1){ 
         if(this.x < (4.5 + 3) && this.x > (4.5 - 3) && this.z < (7 + 3) && this.z > (7 - 3)){
             this.bird.grab(false);
-            if(this.check)
             this.check[this.branch_num + 4] = 1;
             this.catch = false;
         }
+       }
     }
 
     update(t){
         this.checkKeys();
-       /* if (this.temp == 0){
-            this.y = this.y + 0.1;
-            if(this.y >= 1){
-                this.temp = 1;
+        if(this.mov){
+            if (this.temp == 0){
+                this.y = this.y + 0.1;
+                if(this.y >= 1){
+                    this.temp = 1;
+                }
+            }
+            if (this.temp == 1){
+                this.y = this.y - 0.1;
+                if(this.y <= -1){
+                    this.temp = 0;
+                }
             }
         }
-        if (this.temp == 1){
-            this.y = this.y - 0.1;
-            if(this.y <= -1){
-                this.temp = 0;
-            }
-        }*/
 
         
         if(this.strike && !this.lightning.strikeStart) {
@@ -201,18 +210,21 @@ class MyScene extends CGFscene {
         
         if(this.strike) this.lightning.update(t);
 
-        if(this.catch){
+        if(this.catch && !this.mov){
             this.y -= 0.5;
         }
 
-        if(!this.catch && (9+this.y) < 9){
+        if(!this.catch && (9+this.y) < 9 && !this.mov){
             this.y +=0.5;
         }
 
-        if((9+this.y) < 4 && this.catch){
+        if((9+this.y) < 4.5 && this.catch){
             this.catch = false;
         }
-            
+
+        if(!this.catch && !this.mov && this.y == 0){
+            this.mov = true;
+        }     
 
         this.bird.wingAng = Math.sin((t*this.speedFactor)/1000*Math.PI);
 
