@@ -35,6 +35,7 @@ class MyScene extends CGFscene {
         this.bird = new MyBird(this);
         this.tail = new MyTail(this);
         this.skybox = new MyCubeMap(this, "Night");
+        this.nest = new MyNest(this);
         this.plants = [];
         this.plantIndexes = [];
         for (let i = 0; i < 3; i++) this.plants.push(new MyLPlantGroup(this));
@@ -243,7 +244,10 @@ class MyScene extends CGFscene {
             this.lightning.display();
             this.popMatrix();
         }
-
+        this.pushMatrix();
+        this.translate(0, 8, 10);
+        this.nest.display();
+        this.popMatrix();
         // ---- END Primitive drawing section
     }
 }

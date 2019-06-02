@@ -26,6 +26,7 @@ serialInclude(['../lib/CGF.js',
                 'MyQuadRectangle.js',
                 'MyHead.js',
                 'MyTail.js',
+                'MyNest.js',
 
 main=function()
 {

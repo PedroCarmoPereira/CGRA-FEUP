@@ -32,14 +32,18 @@ class MyCylinder extends CGFobject {
             if((i+1)%this.slices==0){
 
                 this.indices.push(i,i+1, i+this.slices);
+                this.indices.push(i+this.slices, i+1, i);
 
                 this.indices.push(i,i+1-this.slices, i+1);
+                this.indices.push(i+1,i+1-this.slices, i);
             }
             else {
 
                 this.indices.push(i, i + 1, i + 1 + this.slices);
+                this.indices.push(i + 1 + this.slices, i + 1, i);
 
                 this.indices.push(i, i + 1 + this.slices, i + this.slices);
+                this.indices.push(i + this.slices, i + 1 + this.slices, i);
             }  
         }
 
