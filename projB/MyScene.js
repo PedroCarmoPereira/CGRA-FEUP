@@ -271,7 +271,7 @@ class MyScene extends CGFscene {
 
         if(this.check[4]){
             this.pushMatrix();
-            this.translate(4.5, 4.2, 7);
+            this.translate(3, 4.2, 6);
             this.rotate(-Math.PI/4, 1, 0, 0);
             this.branch[4].display();
             this.popMatrix();
@@ -279,7 +279,7 @@ class MyScene extends CGFscene {
 
         if(this.check[5]){
             this.pushMatrix();
-            this.translate(4.5, 4.2, 7);
+            this.translate(3, 4.2, 6);
             this.rotate(Math.PI/2, 0, 1, 0);
             this.rotate(-Math.PI/4, 1, 0, 0);
             this.branch[5].display();
@@ -288,7 +288,7 @@ class MyScene extends CGFscene {
 
         if(this.check[6]){
             this.pushMatrix();
-            this.translate(4.5, 4.2, 7);
+            this.translate(3, 4.2, 6);
             this.rotate(Math.PI, 0, 1, 0);
             this.rotate(-Math.PI/4, 1, 0, 0);
             this.branch[6].display();
@@ -297,7 +297,7 @@ class MyScene extends CGFscene {
 
         if(this.check[7]){
             this.pushMatrix();
-            this.translate(4.5, 4.2, 7);
+            this.translate(3, 4.2, 6);
             this.rotate(-Math.PI/2, 0, 1, 0);
             this.rotate(-Math.PI/4, 1, 0, 0);
             this.branch[7].display();
@@ -383,7 +383,7 @@ class MyScene extends CGFscene {
         this.popMatrix();
        
         this.pushMatrix();
-        this.translate(4.5, 4.2, 7);
+        this.translate(3, 4.2, 6);
         this.nest.display();
         this.popMatrix();
 
